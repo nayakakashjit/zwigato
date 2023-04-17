@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var resturantsModel = require('../models/resturants.model')
+var resturantsModel = require('../models/resturants.model');
+var auth = require('../middleware/auth')
 
 /* GET Resturants. */
-router.get('/', function(req, res, next) {
+router.get('/', auth, function(req, res, next) {
    resturantsModel.find()
                   .then((data)=>{
                     res.send({status:200,message:'successfully', data});
@@ -13,7 +14,7 @@ router.get('/', function(req, res, next) {
                   })
 });
 
-router.get('/sort', (req,res)=>{
+router.get('/sort', auth, (req,res)=>{
   const sortVal = +req.query.sortVal;
   resturantsModel.find().sort({'cost' : sortVal })
             .then((data)=>{
@@ -24,7 +25,7 @@ router.get('/sort', (req,res)=>{
             })
 });
 
-router.get('/sortbyRating', (req,res)=>{
+router.get('/sortbyRating', auth, (req,res)=>{
   const sortVal = +req.query.sortVal;
   resturantsModel.find().sort({'average_rating' : sortVal })
             .then((data)=>{

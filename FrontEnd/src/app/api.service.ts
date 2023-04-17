@@ -5,6 +5,10 @@ import { catchError, map } from 'rxjs/operators';
 
 const base_url = 'http://127.0.0.1:3000';
 const options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+// const options = new Headers({
+//   'Content-Type': 'application/json',
+//   Authorization: `Bearer ${auth_token}`,
+// });
 
 @Injectable({
   providedIn: 'root'

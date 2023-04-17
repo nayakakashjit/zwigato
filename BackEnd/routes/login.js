@@ -13,7 +13,12 @@ router.post('/', async (req, res) => {
     if (!validPassword) {
         return res.send({ status: 400, message: 'Incorrect password' });
     }
-    const token = jwt.sign({ _id: user._id }, 'PrivateKey',{ expiresIn: 86400});
+    const token = jwt.sign(
+        { _id: user._id },
+        process.env.TOKEN_KEY,
+        { 
+          expiresIn: 86400
+        });
     res.json({ status: 200, auth: true, message: 'You are successfully logged in', token });
     })
     .catch((error) => {
