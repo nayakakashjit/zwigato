@@ -1,0 +1,112 @@
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../assets/img/slides/h2-slide.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-md-block">
+          <h5>{{'Fresh, rapid and delicious'}}</h5>
+          <p class="d-none d-md-block d-lg-block">{{'In our restaurants we offer delicious food and quality services, we invite you to try our services.'}}</p>
+          <button class="btn btn-outline-secondary" routerLink="/restaurants">{{'View our restaurants'}}</button>
+          <form action="" class="d-none">
+            <input type="text" placeholder="Search Restaurant">
+          </form>
+        </div>
+      </div>
+      
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+<!-- Resturant List -->
+<div class="container-fluid my-5">
+  <div class="row">
+      <div class="col-sm-12 text-center heading"><h1>{{'RESTAURANTS'}}</h1></div>
+   
+    <div class="col-sm-12 text-center ">
+      <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text"  id="" placeholder="Find your favorite restaurant..." name="searchText">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-4" *ngIf="resturants">
+             <h2 style="text-align: left;">{{resturants.length}} Restaurants</h2>
+          </div>
+          <div class="col-sm-8">
+            <ol class="filters">
+              <li>
+                <label (click)="resturantsList()">All</label>
+              </li>
+              <li>
+                <label (click)="sortByRating(-1)">Rating</label>
+              </li>
+              <li>
+                <label (click)="sortByPrice(1)">Cost: Low To High</label>
+              </li>
+              <li>
+                <label (click)="sortByPrice(-1)">Cost: High To Low</label>
+              </li>
+            </ol> 
+          </div>
+      </div>
+        <div class="row py-3" *ngIf="resturants">
+          <div class="col-sm-12 col-md-6 col-lg-3 restaurant" *ngFor="let _restaurant of resturants">
+              <!-- <img src="../../assets/img/restaurants/{{_restaurant.supplier_image}}" alt="restaurant"> -->
+              <img src="{{_restaurant.restaurant_thumb}}" alt="restaurant">
+              <h3>{{_restaurant.restaurant_name}}</h3>
+              <p>{{_restaurant.address.substr(0,35)}} ...</p>
+              <p class="time"><span>Dining Reviews - {{_restaurant.average_rating}}</span>  <span>&#9733;</span> </p>
+              
+              <button type="button" class="btn" routerLink="/restaurants/1" (click)="navigate(_restaurant)" >{{'View our menu'}}</button>
+            </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Resturant List End -->
+
+
+      <!--Customer assurance section-->
+      <div class="row assurance-statement">
+        <div class="col-sm-3">
+          <img src="../../assets/img/icons/icon1.png" alt="">
+          <h3>{{'Better quality'}}</h3>
+          <p>Praesent pulvinar neque pel
+            lentesque mattis pretium.</p>
+        </div>
+        <div class="col-sm-3">
+          <img src="../../assets/img/icons/icon2.png" alt="">
+          <h3>{{'On time'}}</h3>
+          <p>Praesent pulvinar neque pel
+            lentesque mattis pretium.</p>
+        </div>
+        <div class="col-sm-3">
+          <img src="../../assets/img/icons/icon3.png" alt="">
+          <h3>{{'Masterchefs'}}</h3>
+          <p>Praesent pulvinar neque pel
+            lentesque mattis pretium.</p>
+        </div>
+        <div class="col-sm-3">
+          <img src="../../assets/img/icons/icon4.png" alt="">
+          <h3>{{'Tasty food'}}</h3>
+          <p>Praesent pulvinar neque pel
+            lentesque mattis pretium.</p>
+        </div>
+      </div>
+      <!--End of Customer assurance section-->

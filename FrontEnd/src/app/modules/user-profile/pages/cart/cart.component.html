@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="Cart-section" style="margin-top: 78px;">
+        <div *ngIf="true" class="row">
+            <!-- <div class="col-xl-3">
+                <img src="assets/Images/Cart/Cart.png" class="img-fluid mx-auto mob-hide d-block" alt="Cart Item">
+            </div> -->
+
+            <div class="col-xl-12">
+                <div class="Cart-table">
+                    <table class="table table-xs">
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-left">Item</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Discount</th>
+                            <th class="text-center">Final Price</th>
+                            <th class="text-center">Remove</th>
+                        </tr>
+                        <tr class="item-row">
+                            <td class="text-left">
+                                <img src="assets/Images/Cart/Cart.png" class="img-fluid" alt="Cart Item">
+                            </td>
+                            <td class="text-left">
+                                <p>{{'item.title'}}</p>
+                            </td>
+                            <td class="text-center" title="Price"> {{'598' | currency: "INR"}} </td>
+                            <td class="text-center" title="Offer Price"> {{'444' | currency: "INR"}} </td>
+                            <td class="text-center" title="Final Price"> {{'343' | currency: "INR"}} </td>
+                            <td class="text-center" title="Remove"><i class="fas fa-trash-alt remove-product"></i></td>
+                        </tr>
+                    </table>
+                    <!-- <div class="row">
+                        <div class="col-6">
+                            <button type="button" (click)="contShoping()" class="btn btn-success cont-shoping ripple"><i class="fas fa-arrow-circle-left"></i> Continue Shoping</button>
+                        </div>
+                        <div class="col-6">
+                            <div *ngIf="cartList">
+                                <p class="sub-total">SUB TOTAL <span class="float-right"> {{getActualPrice() | currency : "INR"}} </span></p>
+                                <p class="sub-total">DISCOUNT <span class="float-right"> {{getDiscountPrice() | currency : "INR"}} </span></p>
+                                <p class="sub-total">TOTAL PAYABLE <span class="float-right"> {{getFinalPrice() | currency : "INR"}}</span></p>
+                                <div class="float-right move-cart">
+                                    <button type="button" (click)="checkOut(getActualPrice(), getDiscountPrice(), getFinalPrice())" class="btn btn-success cont-shoping ripple">Check Out <i class="fas fa-arrow-circle-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div *ngIf="0" class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>My Cart</h5>
+                        <img src="assets/Images/Cart/Cart_Empty.png" class="img-fluid mx-auto d-block" alt="Cart_Empty">
+                        <h5 class="text-center">Your cart is empty!</h5>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
