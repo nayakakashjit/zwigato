@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link"routerLink="/restaurants">Restaurants</a>
@@ -24,12 +24,17 @@
           <i class="fa fa-2x fa-user" aria-hidden="true"><br>Your Account</i>
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item nav-links"(click)="myProfile()">My Profile</a>
-        <a class="dropdown-item nav-links" (click)="myOrders()">My Orders</a>
+        <div *ngIf="userLogged">
+          <a class="dropdown-item nav-links"(click)="myProfile()">My Profile</a>
+          <a class="dropdown-item nav-links" (click)="myOrders()">My Orders</a>
+        </div>
         <div class="row">
           <div class="col-sm-12 d-flex flex-sm-column flex-md-column">
-            <a class="btn btn-danger text-center my-2 mx-3" routerLink="/account/login">Login</a>
-        <a class="btn btn-warning text-center  mx-3" routerLink="/account/register">Register</a>
+            <div *ngIf="!userLogged">
+              <a class="btn btn-danger text-center my-2 mx-3" routerLink="/account/login">Login</a>
+              <a class="btn btn-warning text-center  mx-3" routerLink="/account/register">Register</a>
+            </div>
+            <a *ngIf="userLogged" class="btn btn-danger text-center my-2 mx-3" (click)="logout()">Logout</a>
           </div>
 
         </div>

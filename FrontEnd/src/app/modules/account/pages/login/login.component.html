@@ -8,8 +8,8 @@
         <h1>Sign In to Zwigato.</h1>
         <input class="usr put" placeholder="Email" type="text" name="email" ngModel>
       <br>
-        <input id="pass" class="pss put" placeholder="Password" name = "password" type="password" ngModel>
-        <button id="bhde" onclick="show()" class="shw" type="button">show</button>
+        <input id="pass" class="pss put" placeholder="Password" name = "password" [type]="passwordtype" ngModel>
+        <button id="bhde" (click)="showPassword()" class="shw" type="button"><i [class]="showHideIcon" aria-hidden="true"></i></button>
         <a class="pass" style="visibility: hidden;" href="">Forgot Password</a>
         <input value="submit" id="btn" class="sub" type="submit">
         <div class="lines">

@@ -11,13 +11,12 @@ export class AuthService {
   } = {
     isLoggedin$: new BehaviorSubject<boolean>(false),
   }
-  public myGlobalVar$ = new BehaviorSubject<any>("Chaitanya");
 
   constructor() { }
 
   isLoggedin() {
     const loggedIn = !!localStorage.getItem('token'); // will return a boolen value
-    this.state.isLoggedin$.next(loggedIn)
+    // this.state.isLoggedin$.next(loggedIn)
     return loggedIn; 
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -14,18 +14,20 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router:Router, 
-    private auth: AuthService
+    private auth: AuthService,
+    private cdr: ChangeDetectorRef
     ) { }
 
   ngOnInit(): void {
+    // Check after login
     this.auth.state.isLoggedin$.subscribe((res)=>{
+      console.log('User Loggedin', res)
       if (res) {
-        this.userLogged = this.auth.isLoggedin();
-        // console.log('User Loggedin', res)
+        this.userLogged = res;
       }
-    })
-    // this.userLogged = this.auth.isLoggedin();
-    // console.log('this.userLogged', this.userLogged);
+    });
+    // check if user refresh from url
+    this.userLogged = !!localStorage.getItem('token');
   }
 
 
@@ -53,6 +55,14 @@ export class HeaderComponent implements OnInit {
     } else {
       this.router.navigateByUrl('/profile/cart')
     }
+  }
+
+  public logout() {
+    window.localStorage.removeItem('token');
+    this.auth.state.isLoggedin$.next(false);
+    this.userLogged = false;
+    this.cdr.detectChanges();
+    this.router.navigateByUrl('/account/login')
   }
 
 }

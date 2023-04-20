@@ -9,18 +9,19 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-
+public token: any = localStorage.getItem('token')
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> { 
-    console.log(request);
-    const Authorization = 'uawiyg78e3echfuery785jdbshcuyr4it6ryucwgfyue';
-    const req = request.clone({
-      setHeaders : {
-        Authorization
-      }
-    })
-    // request.headers.set('Authorization', 'uawiyg78e3echfuery785jdbshcuyr4it6ryucwgfyue')
-    return next.handle(req);
+    const ifLoginUrl = request.url.includes('login');
+    if (!ifLoginUrl) {
+      // const x-access-token = `${this.token}`;
+      request = request.clone({
+        setHeaders : {
+          'x-access-token': this.token
+        }
+      })
+    }
+    return next.handle(request);
   }
 }

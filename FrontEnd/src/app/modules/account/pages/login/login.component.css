@@ -132,6 +132,10 @@
     transform: translateX(-55px) translateY(22px);
 }
 
+button:focus {
+    outline: none;
+}
+
 .banner{
     width: 40%;
     height: 100%;
