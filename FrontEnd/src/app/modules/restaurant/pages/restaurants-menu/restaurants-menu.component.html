@@ -1,0 +1,59 @@
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-sm-12 text-center heading"><h1> {{'Domino's Pizza'}} - Menu </h1></div>
+      
+      <div class="col-sm-12 text-center ">
+        <div class="container">
+            <div class="row py-3">
+                <div class="p-3 bg-danger rounded w-100 d-flex justify-content-start flex-row">
+                    <span class="font-weight-bold justify-content-center align-items-center" > <h4 class="mt-auto mb-auto mr-2">Filter Items: </h4></span>
+                    <select class="w-25 mr-2"  name="searchCat" id="">
+                        <option value="" selected="selected">All Categories</option>
+                        <option value="1">Food</option>
+                        <option value="2">Drinks</option>
+                    </select>
+                    <input class="w-50"  type="text"  id="" placeholder="Seach by food name.." name="searchText">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12 col-md-12 col-lg-12  restaurant" *ngIf="errorMsg">
+                   <p class="text-italic text-center no-display">No Items to display</p>
+                  </div>
+            </div>
+            <div class="row mx-5 mt-3" *ngIf="false">
+                <div class="col-sm-12 col-md-6 col-lg-3  restaurant" *ngFor="let menu of menus">
+                    <!--<div class="badge"><span class="badge badge-danger">New</span></div>-->
+                    <img src="{{menu.menu_image}}" alt="">
+                    <!-- <h3><a routerLink="/../products/{{menu.id_product}}">{{menu.product_name}}</a></h3> -->
+                    <h3>{{menu.menu_name}}</h3>
+                    <p><strong>Category: {{menu.menu_type}}</strong> </p>
+                    <p class="ingredients">{{menu.description.substr(0,50)}} ...</p>
+                    <p class="currency"> {{menu.menu_price}}</p>
+                    <!-- <button class="btn"
+                    [class.disabled]="menu.quantity < 1"
+                    [class.btn-warning]="menu.quantity < 1"
+                    (click)="addToCart(menu.id_product)">{{menu.quantity < 1 ? "No Stock" : "Add to cart"}}</button> -->
+                    <button class="btn">Add to cart</button>
+                  </div>
+            </div>
+
+            <div class="row mx-5 mt-3">
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                    <div class="card_container">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/cajaregistradora-776cc.appspot.com/o/pngwing.com(2).png?alt=media&token=bde13cf8-4b17-4da9-90cf-c16db83b2e1f" />
+                        <div class="content-box">
+                          <h4 class="name">Veggie Burguer</h4>
+                          <p>A burguer typically considered a sandwich, consisting of one or more cooked patties-usually placed inside a sliced bread roll or bun</p>
+                          <p>Onion, Lettuce, Tomatoe, Patty, Cheese</p>
+                          <div class="btn">
+                            <h2 class="price">$ 5</h2>
+                            <a href="#">Add to Cart</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
+import { Router } from '@angular/router';
+// import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-home',
@@ -11,38 +12,15 @@ export class HomeComponent implements OnInit {
   public resturants:any
 
   constructor(
-    private api: ApiService
+    // private api: ApiService,
+    private router:Router
   ) { }
 
   ngOnInit() {
-    this.resturantsList();
+    // this.resturantsList();
   }
 
-  public resturantsList() {
-    this.api.get('resturants').subscribe(res => {
-      this.resturants = res.data;
-      console.log('data response', this.resturants);
-    });
+  navigate() {
+    this.router.navigateByUrl('/restaurant')
   }
-
-  public sortByPrice(sortVal: any) {
-    this.api.get(`resturants/sort?sortVal=${sortVal}`).subscribe(res => {
-      this.resturants = res.data;
-      console.log('data response', this.resturants);
-    });
-  }
-
-  public sortByRating(sortVal: any) {
-    this.api.get(`resturants/sortbyRating?sortVal=${sortVal}`).subscribe(res => {
-      this.resturants = res.data;
-      console.log('data response', this.resturants);
-    });
-  }
-
-
-  navigate(_link: any) {
-    console.log(_link);
-    
-  }
-
 }

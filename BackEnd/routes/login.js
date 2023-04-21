@@ -4,27 +4,51 @@ const jwt = require('jsonwebtoken');
 var userModel = require('../models/users.model');
 const express = require('express');
 const router = express.Router();
+const config = require('../config')
 
-router.post('/', async (req, res) => {
-    // find the user by their email address
-    userModel.findOne({ email: req.body.email }).then(async (user)=> {
-    // Then validate the Credentials 
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validPassword) {
-        return res.send({ status: 400, message: 'Incorrect password' });
-    }
-    const token = jwt.sign(
-        { _id: user._id },
-        process.env.TOKEN_KEY,
-        { 
-          expiresIn: 86400
-        });
-    res.json({ status: 200, auth: true, message: 'You are successfully logged in', token });
+router.post('/', (req, res) => {
+    userModel.findOne({
+        email: req.body.email
     })
-    .catch((error) => {
-        res.send({ status: 400, message: 'Incorrect email' });
+    .then((user, err) => {
+        if (err) {
+            res.status(500).send({
+                message: err
+            });
+            return;
+        }
+        if (!user) {
+            return res.send({
+                status: 401,
+                message: 'Incorrect password'
+            });
+        }
+        var passwordIsValid = bcrypt.compareSync(
+            req.body.password,
+            user.password
+        );
+        if (!passwordIsValid) {
+            return res.send({
+                status: 401,
+                message: 'Invalid Password!'
+            });
+        };
+        var token = jwt.sign({
+            _id: user._id
+        }, config.secret, {
+            expiresIn: 86400
+        });
+        res.status(200).send({
+            id: user._id,
+            username: user.name,
+            email: user.email,
+            message: 'You are successfully logged in',
+            auth: true,
+            token
+        });
+    }).catch((err) => {
+        console.log(err);
     });
-
 });
 
 module.exports = router;

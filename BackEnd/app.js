@@ -6,9 +6,10 @@ const cors = require('cors');
 require('./dbConfig/mongoose');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login');
+var loginRouter = require('./routes/login'); // login
+var usersRouter = require('./routes/users'); // register / signup
 var resturantsRouter = require('./routes/resturants');
+var resturantMenu = require('./routes/restaurantsMenu');
 
 var app = express();
 
@@ -23,5 +24,6 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/user', usersRouter);
 app.use('/resturants', resturantsRouter);
+app.use('/restaurantsMenu', resturantMenu)
 
 module.exports = app;
