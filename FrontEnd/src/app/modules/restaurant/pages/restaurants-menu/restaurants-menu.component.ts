@@ -11,6 +11,7 @@ export class RestaurantsMenuComponent implements OnInit {
 
  public menus: any;
  public errorMsg: any = false;
+ public restaurantName: '' | undefined;
 
 constructor(
   private route: ActivatedRoute,
@@ -22,9 +23,10 @@ public ngOnInit(): void {
 }
 
   public UrlValue() {
-    this.route.queryParams.subscribe((params: { restaurantId?: any }) => {
+    this.route.queryParams.subscribe((params: { restaurantId?: any, restaurantName?:any }) => {
       if (Object.keys(params).length !== 0) {
         const restaurantId: number = parseInt(params.restaurantId, 10);
+        this.restaurantName = params.restaurantName;
         console.log('restaurantId', restaurantId);
         this.menuLists(restaurantId)
       }

@@ -1,6 +1,6 @@
 <div class="container-fluid my-5">
     <div class="row">
-        <div class="col-sm-12 text-center heading"><h1> {{'Domino's Pizza'}} - Menu </h1></div>
+        <div class="col-sm-12 text-center heading"><h1> {{restaurantName}} - Menu </h1></div>
       
       <div class="col-sm-12 text-center ">
         <div class="container">
@@ -38,15 +38,15 @@
             </div>
 
             <div class="row mx-5 mt-3">
-                <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let menu of menus">
                     <div class="card_container">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/cajaregistradora-776cc.appspot.com/o/pngwing.com(2).png?alt=media&token=bde13cf8-4b17-4da9-90cf-c16db83b2e1f" />
+                        <img src="{{menu.menu_image}}" />
                         <div class="content-box">
-                          <h4 class="name">Veggie Burguer</h4>
-                          <p>A burguer typically considered a sandwich, consisting of one or more cooked patties-usually placed inside a sliced bread roll or bun</p>
-                          <p>Onion, Lettuce, Tomatoe, Patty, Cheese</p>
+                          <h4 class="name">{{menu.menu_name}}</h4>
+                          <p>{{menu.description}} ...</p>
+                          <p>Category: {{menu.menu_type}}</p>
                           <div class="btn">
-                            <h2 class="price">$ 5</h2>
+                            <h2 class="price">₹ {{menu.menu_price}}</h2>
                             <a href="#">Add to Cart</a>
                           </div>
                         </div>

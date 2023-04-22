@@ -45,7 +45,8 @@ export class RestaurantsComponent implements OnInit {
     console.log(_link);
     this.router.navigate(['/restaurant/restaurant-menu'],{
       queryParams: {
-        restaurantId: _link.restaurant_id
+        restaurantId: _link.restaurant_id,
+        restaurantName: _link.restaurant_name
       }
     })
   }
